@@ -27,7 +27,7 @@ function ChildrenComponent(props) {
           transition: "height 0.5s ease-in-out",
         }}
       >
-        <p className="description">{props.description}</p>
+        <div className="description" dangerouslySetInnerHTML={{ __html: props.description }}></div>
         <p className="date">{props.fecha_vencimiento}</p>
         <textarea name="txtArea" id="txt_Area" />
       </div>

@@ -1,14 +1,5 @@
 # Práctica 10: React
 
-## Índice
-
-- [Práctica 10: React](#práctica-10-react)
-  - [Índice](#índice)
-  - [Partes de la documentación tratada](#partes-de-la-documentación-tratada)
-  - [Actividad](#actividad)
-    - [COMPONENTE PADRE](#componente-padre)
-    - [COMPONENTES HIJAS](#componentes-hijas)
-
 ## Partes de la documentación tratada
 
 - [Elección de la estructura del estado](https://es.react.dev/learn/choosing-the-state-structure)
