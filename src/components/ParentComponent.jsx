@@ -1,12 +1,26 @@
 import { useState, useEffect } from "react";
 import ChildrenComponent from "./ChildrenComponent";
-import { marked } from "marked";
 
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  gfm: true,
-  tables: true,
-});
+import { marked } from "marked";
+import hljs from "highlight.js";
+import markedAlert from "marked-alert";
+import { markedHighlight } from "marked-highlight";
+
+import "../assets/styles/darcula.css";
+import "../assets/styles/githubStyles.css";
+import "../assets/styles/githubStylesColor.css";
+
+marked.use(
+  markedHighlight({
+    async: false,
+    langPrefix: "hljs language-",
+    highlight: function (code, lang) {
+      const language = hljs.getLanguage(lang) ? lang : "plaintext";
+      return hljs.highlight(code, { language }).value;
+    },
+  }),
+  markedAlert()
+);
 
 function ParentComponent() {
   const [activeIndex, setActiveIndex] = useState(1);
@@ -24,9 +38,8 @@ function ParentComponent() {
         if (response.status === 200) {
           let data = await response.text();
 
-          
           data = marked.parse(data);
-          
+
           results[`Actividad ${index}`] = data;
 
           console.log(data);

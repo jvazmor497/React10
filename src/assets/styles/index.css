@@ -1,3 +1,26 @@
+:root {
+    --bg-color: #fff;
+    --text-color: #1f1f1f;
+    --border-color: #535353;
+    --link-color: rgb(32, 32, 117);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #232323;
+        --text-color: #fff;
+        --border-color: #2A2A2A;
+        --link-color: rgb(81, 81, 205);
+    }
+}
+
+root,
+html {
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 #root {
     display: flex;
     flex-direction: row;
@@ -10,12 +33,11 @@
 }
 
 .activity {
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
-    width: 50vw;
+    width: 70vw;
 }
 
 .parentContainer {
@@ -31,7 +53,7 @@
 .description::before {
     content: "";
     display: block;
-    border-top: rgba(0, 0, 0, 0.2) 1px solid;
+    border-top: var(--border-color) 1px solid;
     height: 0px;
     margin-bottom: 1rem;
 }
@@ -47,7 +69,15 @@
 }
 
 textarea {
+    margin: 10px;
+    color: var(--text-color);
+    background-color: var(--bg-color);
     resize: none;
     width: 70%;
     height: 100px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--link-color);
 }
