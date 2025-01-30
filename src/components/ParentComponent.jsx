@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ChildrenComponent from "./ChildrenComponent";
+import Loading from "./loadingComponent";
 
 import { marked } from "marked";
 import hljs from "highlight.js";
@@ -59,24 +60,27 @@ function ParentComponent() {
   }, []);
 
   const callbackFunction = (index) => {
-    setActiveIndex(index === activeIndex ? -1 : index);
+    setActiveIndex(index === activeIndex ? null : index);
   };
-
-  return (
-    <div className="parentContainer">
-      {description &&
-        Object.keys(description).map((key, index) => (
-          <ChildrenComponent
-            key={key}
-            title={key}
-            description={description[key]}
-            fecha_vencimiento={new Date().toLocaleDateString()}
-            isActive={activeIndex === index}
-            onClick={() => callbackFunction(index)}
-          />
-        ))}
-    </div>
-  );
+  if (Object.keys(description).length === 0) {
+    return <Loading />;
+  } else {
+    return (
+      <div className="parentContainer">
+        {description &&
+          Object.keys(description).map((key, index) => (
+            <ChildrenComponent
+              key={key}
+              title={key}
+              description={description[key]}
+              fecha_vencimiento={new Date().toLocaleDateString()}
+              isActive={activeIndex === index}
+              onClick={() => callbackFunction(index)}
+            />
+          ))}
+      </div>
+    );
+  }
 }
 
 export default ParentComponent;

@@ -14,8 +14,12 @@ function ChildrenComponent(props) {
   };
 
   return (
-    <div className="activity" style={{ transition: "height 0.5s ease-in-out" }}>
-      <div className="title" onClick={toggleActive}>
+    <div
+      className="activity"
+      style={{ transition: "height 0.5s ease-in-out" }}
+      onClick={toggleActive}
+    >
+      <div className="title">
         <h2>{props.title}</h2>
       </div>
       <div
@@ -27,9 +31,16 @@ function ChildrenComponent(props) {
           transition: "height 0.5s ease-in-out",
         }}
       >
-        <div className="description" dangerouslySetInnerHTML={{ __html: props.description }}></div>
+        <div
+          className="description"
+          dangerouslySetInnerHTML={{ __html: props.description }}
+        ></div>
         <p className="date">{props.fecha_vencimiento}</p>
-        <textarea name="txtArea" id="txt_Area" />
+        <textarea
+          onClick={(e) => e.stopPropagation()}
+          name="txtArea"
+          id="txt_Area"
+        />
       </div>
     </div>
   );
