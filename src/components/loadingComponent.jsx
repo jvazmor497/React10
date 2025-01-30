@@ -14,7 +14,7 @@ function Loading() {
     >
       <img
         className="loading"
-        src="/images/loading.png"
+        src="/React10/images/loading.png"
         alt="loading"
       />
     </div>
