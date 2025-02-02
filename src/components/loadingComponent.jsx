@@ -12,11 +12,7 @@ function Loading() {
         width: "100%",
       }}
     >
-      <img
-        className="loading"
-        src="/React10/images/loading.png"
-        alt="loading"
-      />
+      <img className="loading" src="images/loading.png" alt="loading" />
     </div>
   );
 }

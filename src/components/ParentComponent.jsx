@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import ChildrenComponent from "./ChildrenComponent";
-import Loading from "./loadingComponent";
 
 import { marked } from "marked";
 import hljs from "highlight.js";
@@ -24,7 +23,7 @@ marked.use(
 );
 
 function ParentComponent() {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(null);
   const [description, setDescription] = useState({});
 
   const getDatas = async () => {
@@ -42,15 +41,11 @@ function ParentComponent() {
           data = marked.parse(data);
 
           results[`Actividad ${index}`] = data;
-
-          console.log(data);
         }
       } catch (error) {
         console.log(error);
       }
     }
-
-    console.log(results);
 
     setDescription(results);
   };
@@ -62,25 +57,21 @@ function ParentComponent() {
   const callbackFunction = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
   };
-  if (Object.keys(description).length === 0) {
-    return <Loading />;
-  } else {
-    return (
-      <div className="parentContainer">
-        {description &&
-          Object.keys(description).map((key, index) => (
-            <ChildrenComponent
-              key={key}
-              title={key}
-              description={description[key]}
-              fecha_vencimiento={new Date().toLocaleDateString()}
-              isActive={activeIndex === index}
-              onClick={() => callbackFunction(index)}
-            />
-          ))}
-      </div>
-    );
-  }
+  return (
+    <>
+      {description &&
+        Object.keys(description).map((key, index) => (
+          <ChildrenComponent
+            key={key}
+            title={key}
+            description={description[key]}
+            fecha_vencimiento={new Date().toLocaleDateString()}
+            isActive={activeIndex === index}
+            onClick={() => callbackFunction(index)}
+          />
+        ))}
+    </>
+  );
 }
 
 export default ParentComponent;

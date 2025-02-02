@@ -1,8 +1,14 @@
-import ParentComponent from "../components/ParentComponent";
+import { lazy, Suspense } from "react";
+import Loading from "../components/loadingComponent";
 
+const ParentComponent = lazy(() => import("../components/ParentComponent"));
 function Home() {
   return (
-      <ParentComponent />
+    <Suspense fallback={<Loading />}>
+      <div className="parentContainer">
+        <ParentComponent />
+      </div>
+    </Suspense>
   );
 }
 
